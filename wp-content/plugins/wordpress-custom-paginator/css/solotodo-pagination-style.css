@@ -1,0 +1,14 @@
+#solotodo_pagination_container div {
+  height: 60px;
+}
+
+#solotodo_pagination_container a {
+  width: 290px;
+  display: block;
+  font-size: 18px;
+}
+
+#solotodo_pagination_container select {
+  width: 400px; 
+  margin-bottom: 30px;
+}
