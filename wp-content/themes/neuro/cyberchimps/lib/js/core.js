@@ -10,20 +10,25 @@
  * @package  Framework
  * @since    1.0
  * @author   CyberChimps
- * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v3.0 (or later)
  * @link     http://www.cyberchimps.com/
  */
- 
-jQuery(document).ready(function() {
+
+jQuery(document).ready(function () {
 
 	// On click on HTML.
-	jQuery('html').click(function() {
-		
+	jQuery('html').click(function () {
+
 		// Check if mobile menu is open.
-		if( jQuery('.nav-collapse').hasClass('in') ){
-			
+		if (jQuery('.nav-collapse').hasClass('in')) {
+
 			// Close mobile menu.
 			jQuery('.nav-collapse').collapse('toggle');
 		}
+	});
+	
+	// Stop propagation on click on search in the menu bar.
+	jQuery('#navigation .search-query').click(function(event){
+		event.stopPropagation();
 	});
 });

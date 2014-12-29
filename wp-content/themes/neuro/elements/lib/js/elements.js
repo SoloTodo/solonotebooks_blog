@@ -10,36 +10,36 @@
  * @package  Framework
  * @since    1.0
  * @author   CyberChimps
- * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v3.0 (or later)
  * @link     http://www.cyberchimps.com/
  */
 
 /*	Boxes element make all the same height */
 
-jQuery(document).ready(function($) {
-	
-	if($(window).width() > 767) {
-	setTimeout(function() {
-		$('#widget-boxes-container .box').css('height', $('#widget-boxes-container').height() - 20)
-		}, 500 );
+jQuery(window).load(function ($) {
+
+	if (jQuery(window).width() > 767) {
+		setTimeout(function () {
+			jQuery('#widget_boxes_container .box').css('height', jQuery('#widget_boxes_container').height() - 20)
+		}, 500);
 	}
-	
-	$('.boxes .box').each(function(){
-		var url = $(this).children('.box-link').attr('href');
-		$(this).hover(function(){
-			if(url && url != '')
-			$(this).css('cursor', 'pointer');
-		},
-		function(){
-			$(this).css('cursor', 'default');
-		});
-		$(this).click(function(){
-			if(url && url != '')
-			window.location = url;
+
+	jQuery('.boxes .box').each(function () {
+		var url = jQuery(this).children('.box-link').attr('href');
+		jQuery(this).hover(function () {
+				if (url && url != '')
+					jQuery(this).css('cursor', 'pointer');
+			},
+			function () {
+				jQuery(this).css('cursor', 'default');
+			});
+		jQuery(this).click(function () {
+			if (url && url != '')
+				window.location = url;
 		})
 	});
-	
+
 	//starts carousel cycle
-	$('.carousel').carousel('cycle');
+	jQuery('.carousel').carousel('cycle');
 
 });

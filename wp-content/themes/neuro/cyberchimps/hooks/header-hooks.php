@@ -11,283 +11,303 @@
  * @package  Framework
  * @since    1.0
  * @author   CyberChimps
- * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
+ * @license  http://www.opensource.org/licenses/gpl-license.php GPL v3.0 (or later)
  * @link     http://www.cyberchimps.com/
  */
 
 function cyberchimps_header_section_order() {
 	//get the defaults from the themes function file and turn the key into the value in a new array to mirror what happens within the theme when their are options saved in the database
 	$defaults = array();
-	$default = apply_filters( 'header_drag_and_drop_default', array( 'cyberchimps_header_content'    => __( 'Logo + Icons', 'cyberchimps_core' ) ) );
-	foreach( $default as $key => $val ){
+	$default  = apply_filters( 'header_drag_and_drop_default', array( 'cyberchimps_header_content' => __( 'Logo + Icons', 'cyberchimps_core' ) ) );
+	foreach ( $default as $key => $val ) {
 		$defaults[] = $key;
 	}
 	// call the database results and if they don't exist then call the defaults from above
 	$header_section = cyberchimps_get_option( 'header_section_order', $defaults );
 	$header_section = ( $header_section == '' ) ? $defaults : $header_section;
-	
+
 	if ( is_array( $header_section ) ) {
-		foreach( $header_section as $func ) {
-			do_action($func);
+		foreach ( $header_section as $func ) {
+			do_action( $func );
 		}
 	}
 }
-add_action('cyberchimps_header', 'cyberchimps_header_section_order');
+
+add_action( 'cyberchimps_header', 'cyberchimps_header_section_order' );
 
 // Logo/Icons header element.
-function cyberchimps_logo_icons() { ?>
+function cyberchimps_logo_icons() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
-	
+		</div>
+
 		<div id="register" class="span5">
-			<?php if (function_exists('cyberchimps_header_social_icons') ) {
+			<?php if ( function_exists( 'cyberchimps_header_social_icons' ) ) {
 				cyberchimps_header_social_icons();
 			} ?>
 		</div>
 	</header>
-<?php }
-add_action('cyberchimps_header_content', 'cyberchimps_logo_icons');
+<?php
+}
+
+add_action( 'cyberchimps_header_content', 'cyberchimps_logo_icons' );
 
 // Logo/Search header element.
-function cyberchimps_logo_searchform() { ?>
+function cyberchimps_logo_searchform() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
-	
+		</div>
+
 		<div id="search" class="span5">
-			<?php 
-				get_search_form( true );
-			 ?>
+			<?php
+			get_search_form( true );
+			?>
 		</div>
 	</header>
-<?php }
-add_action('cyberchimps_logo_search', 'cyberchimps_logo_searchform');
+<?php
+}
+
+add_action( 'cyberchimps_logo_search', 'cyberchimps_logo_searchform' );
 
 // Description/Icons header element.
-function cyberchimps_description_icons() { ?>
+function cyberchimps_description_icons() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>	
-	
-		<div id ="register" class="span5">
-			<?php if (function_exists('cyberchimps_header_social_icons') ) {
+		</div>
+
+		<div id="register" class="span5">
+			<?php if ( function_exists( 'cyberchimps_header_social_icons' ) ) {
 				cyberchimps_header_social_icons();
 			} ?>
 		</div>
 	</header>
-<?php }
-add_action('cyberchimps_description_icons', 'cyberchimps_description_icons');
+<?php
+}
+
+add_action( 'cyberchimps_description_icons', 'cyberchimps_description_icons' );
 
 // Logo and Contact
-function cyberchimps_sitename_contact() {?>
+function cyberchimps_sitename_contact() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
-	
-		<div id ="register" class="span5">
-			<?php if (function_exists('cyberchimps_contact_info') ) {
+		</div>
+
+		<div id="register" class="span5">
+			<?php if ( function_exists( 'cyberchimps_contact_info' ) ) {
 				echo cyberchimps_contact_info();
 			} ?>
 		</div>
 	</header>
-<?php }
-add_action('cyberchimps_sitename_contact', 'cyberchimps_sitename_contact');
+<?php
+}
+
+add_action( 'cyberchimps_sitename_contact', 'cyberchimps_sitename_contact' );
 
 // Logo and Description
-function cyberchimps_logo_description() {?>
+function cyberchimps_logo_description() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
-	
-		<div id ="description" class="span5">
-			<?php if (function_exists('cyberchimps_description') ) {
+		</div>
+
+		<div id="description" class="span5">
+			<?php if ( function_exists( 'cyberchimps_description' ) ) {
 				echo cyberchimps_description();
 			} ?>
 		</div>
 	</header>
-<?php }
+<?php
+}
+
 add_action( 'cyberchimps_logo_description', 'cyberchimps_logo_description' );
 
 // Defines action for header elelment "Logo"
-function cyberchimps_logo() {?>
+function cyberchimps_logo() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
+		</div>
 	</header>
-<?php }
+<?php
+}
+
 add_action( 'cyberchimps_logo', 'cyberchimps_logo' );
 
 // Header left content (sitename or logo)
 function cyberchimps_header_logo() {
-	 
-	$url = ( cyberchimps_get_option( 'custom_logo_url_link' ) != '' ) ? cyberchimps_get_option( 'custom_logo_url_link' ) : home_url();
-	if ( cyberchimps_get_option('custom_logo') == '1') {
-		$logo = cyberchimps_get_option('custom_logo_uploader');
-	?>
+
+	$url = ( cyberchimps_get_option( 'custom_logo_url_link' ) != '' ) ? cyberchimps_get_option( 'custom_logo_url_link' ) : esc_url( home_url() );
+	if ( cyberchimps_get_option( 'custom_logo' ) == '1' ) {
+		$logo = cyberchimps_get_option( 'custom_logo_uploader' );
+		?>
 		<div id="logo">
-			<a href="<?php echo $url; ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img src="<?php echo stripslashes($logo); ?>" alt="logo"></a>
+			<a href="<?php echo $url; ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img src="<?php echo stripslashes( $logo ); ?>" alt="<?php echo get_bloginfo( 'name' ); ?>"></a>
 		</div>
-	<?php } else {
-		if ( function_exists('cyberchimps_header_site_title') ) {
+	<?php
+	} else {
+		if ( function_exists( 'cyberchimps_header_site_title' ) ) {
 			cyberchimps_header_site_title();
 		}
-	}					 
+	}
 }
 
-function cyberchimps_header_site_title() { ?>	
-	<div class="hgroup">
-		<h2 class="site-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
-	</div>
-<?php }
-
-
-// Social icons
-function cyberchimps_header_social_icons() {
-	
-	$folder = ( cyberchimps_get_option( 'theme_backgrounds', 'default' ) ) ? cyberchimps_get_option( 'theme_backgrounds', 'default' ) : 'default';
-	
-	// Set path of social image folder.
-	$social_image = get_template_directory_uri() . '/cyberchimps/lib/images/social/' . $folder;
-	
-	$twitter_display = cyberchimps_get_option( 'social_twitter', 'checked' );
-	$facebook_display = cyberchimps_get_option( 'social_facebook', 'checked' );
-	$google_display = cyberchimps_get_option( 'social_google', 'checked' );
-	$flickr_display = cyberchimps_get_option('social_flickr');
-	$pinterest_display = cyberchimps_get_option('social_pinterest');
-	$linkedin_display = cyberchimps_get_option('social_linkedin');
-	$youtube_display = cyberchimps_get_option('social_youtube');
-	$googlemaps_display = cyberchimps_get_option('social_googlemaps');
-	$email_display = cyberchimps_get_option('social_email');
-	$rss_display = cyberchimps_get_option('social_rss');
-	
-	$output = '';
-	
-	if ( !empty($twitter_display) ) {
-		$twitter_url = cyberchimps_get_option('twitter_url');
-		$output .= '<a href="'.esc_attr($twitter_url).'" target="_blank"><img src="' . $social_image . '/twitter.png" alt="Twitter" /></a>';
-	}
-	
-	if ( !empty($facebook_display) ) {
-		$facebook_url = cyberchimps_get_option('facebook_url');
-		$output .= '<a href="'.esc_attr($facebook_url).'" target="_blank"><img src="' . $social_image . '/facebook.png" alt="Facebook" /></a>';
-	}
-	
-	if ( !empty($google_display) ) {
-		$google_url = cyberchimps_get_option('google_url');
-		$output .= '<a href="'.esc_attr($google_url).'" target="_blank"><img src="' . $social_image . '/gplus.png" alt="Google" /></a>';
-	}
-	
-	if ( !empty($flickr_display) ) {
-		$flickr_url = cyberchimps_get_option('flickr_url');
-		$output .= '<a href="'.esc_attr($flickr_url).'" target="_blank"><img src="' . $social_image . '/flickr.png" alt="Flickr" /></a>';
-	}
-	
-	if ( !empty($pinterest_display) ) {
-		$pinterest_url = cyberchimps_get_option('pinterest_url');
-		$output .= '<a href="'.esc_attr($pinterest_url).'" target="_blank"><img src="' . $social_image . '/pinterest.png" alt="Pinterest" /></a>';
-	}
-	
-	if ( !empty($linkedin_display) ) {
-		$linkedin_url = cyberchimps_get_option('linkedin_url');
-		$output .= '<a href="'.esc_attr($linkedin_url).'" target="_blank"><img src="' . $social_image . '/linkedin.png" alt="LinkedIn" /></a>';
-	}
-	
-	if ( !empty($youtube_display) ) {
-		$youtube_url = cyberchimps_get_option('youtube_url');
-		$output .= '<a href="'.esc_attr($youtube_url).'" target="_blank"><img src="' . $social_image . '/youtube.png" alt="YouTube" /></a>';
-	}
-	
-	if ( !empty($googlemaps_display) ) {
-		$googlemaps_url = cyberchimps_get_option('googlemaps_url');
-		$output .= '<a href="'.esc_attr($googlemaps_url).'" target="_blank"><img src="' . $social_image . '/googlemaps.png" alt="Google Maps" /></a>';
-	}
-	
-	if ( !empty($email_display) ) {
-		$email_url = cyberchimps_get_option('email_url');
-		$output .= '<a href="mailto:'.esc_attr($email_url).'"><img src="' . $social_image . '/email.png" alt="Email" /></a>';
-	}
-	
-	if ( !empty($rss_display) ) {
-		//bloginfo('rss2_url')
-		$rss_url = cyberchimps_get_option('rss_url');
-		$output .= '<a href="'.esc_attr($rss_url).'" target="_blank"><img src="' . $social_image . '/rss.png" alt="RSS" /></a>';
-	}
+function cyberchimps_header_site_title() {
 	?>
-	
+	<div class="hgroup">
+		<h2 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h2>
+	</div>
+<?php
+}
+
+/**
+ * Social icons positioned in header and some theme's footer
+ *
+ * The key of the $social variable has to match the font icon you want to use. If that differs from the name you want displayed set the title key
+ * e.g. $social['twitterbird']['title'] = 'twitter';
+ *
+ * styling is located in /lib/css/core.css
+ * icon fonts are from http://drinchev.github.io/monosocialiconsfont/
+ */
+function cyberchimps_header_social_icons() {
+
+	// get the design of the icons to apply the right class
+	$design = cyberchimps_get_option( 'theme_backgrounds', 'default' );
+
+	// create array of social icons to loop through to check if they are set and add title key to
+	// social networks with names different to key
+
+	$social['twitterbird']['set']   = cyberchimps_get_option( 'social_twitter', 'checked' );
+	$social['twitterbird']['title'] = 'twitter';
+	$social['twitterbird']['url']   = cyberchimps_get_option( 'twitter_url' );
+	$social['facebook']['set']      = cyberchimps_get_option( 'social_facebook', 'checked' );
+	$social['facebook']['url']      = cyberchimps_get_option( 'facebook_url' );
+	$social['googleplus']['set']    = cyberchimps_get_option( 'social_google', 'checked' );
+	$social['googleplus']['url']    = cyberchimps_get_option( 'google_url' );
+	$social['flickr']['set']        = cyberchimps_get_option( 'social_flickr' );
+	$social['flickr']['url']        = cyberchimps_get_option( 'flickr_url' );
+	$social['pinterest']['set']     = cyberchimps_get_option( 'social_pinterest' );
+	$social['pinterest']['url']     = cyberchimps_get_option( 'pinterest_url' );
+	$social['linkedin']['set']      = cyberchimps_get_option( 'social_linkedin' );
+	$social['linkedin']['url']      = cyberchimps_get_option( 'linkedin_url' );
+	$social['youtube']['set']       = cyberchimps_get_option( 'social_youtube' );
+	$social['youtube']['url']       = cyberchimps_get_option( 'youtube_url' );
+	$social['map']['set']           = cyberchimps_get_option( 'social_googlemaps' );
+	$social['map']['title']         = 'google maps';
+	$social['map']['url']           = cyberchimps_get_option( 'googlemaps_url' );
+	$social['email']['set']         = cyberchimps_get_option( 'social_email' );
+	$social['email']['url']         = 'mailto:' . cyberchimps_get_option( 'email_url' );
+	$social['rss']['set']           = cyberchimps_get_option( 'social_rss' );
+	$social['rss']['url']           = cyberchimps_get_option( 'rss_url' );
+	$social['instagram']['set']		= cyberchimps_get_option( 'social_instagram' );
+	$social['instagram']['url']		= cyberchimps_get_option( 'instagram_url' );
+
+	$output = '';
+
+	// get the blog title to add to link title
+	$link_title = get_bloginfo( 'title' );
+
+	// Loop through the $social variable
+	foreach ( $social as $key => $value ) {
+
+		// Check that the social icon has been set
+		if ( !empty( $value['set'] ) ) {
+
+			// check if title is set and use it otherwise use key as title
+			$title = ( isset( $social[$key]['title'] ) ) ? $social[$key]['title'] : $key;
+
+			// Create the output
+			$output .= '<a href="' . esc_url( $social[$key]['url'] ) . '"' . ( "email" != $key ? ' target="_blank"' : '' )
+				. ' title="' . esc_attr( $link_title . ' ' . ucwords( $title ) ) . '" class="symbol ' . $key . '"></a>';
+		}
+
+	}
+
+	// Echo to the page
+	?>
 	<div id="social">
-		<div class="icons">
+		<div class="<?php echo $design; ?>-icons">
 			<?php echo $output; ?>
 		</div>
 	</div>
-	
-<?php }
+
+<?php
+}
 
 // Custom HTML header element.
-function cyberchimps_custom_header_element_content() { ?>
+function cyberchimps_custom_header_element_content() {
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
 			<?php echo stripslashes( cyberchimps_get_option( 'custom_header_element' ) ); ?>
 		</div>
 	</header>
-<?php }
+<?php
+}
 
 // Sitename/Register
 function cyberchimps_logo_register_content() {
-global $current_user; ?>
+	global $current_user; ?>
 	<header id="cc-header" class="row-fluid">
 		<div class="span7">
-			<?php if (function_exists('cyberchimps_header_logo') ) {
+			<?php if ( function_exists( 'cyberchimps_header_logo' ) ) {
 				cyberchimps_header_logo();
 			} ?>
-		</div>	
+		</div>
 
-		<div id ="register" class="span5">
-    <div class="register">
-			<?php if(!is_user_logged_in()) :?>
-				<?php wp_loginout(); ?> <?php wp_meta(); ?> | <?php wp_register( '', '', true ); ?>
-			<?php else :?>
-				Welcome back <strong><?php global $current_user; get_currentuserinfo(); echo ($current_user->user_login); ?></strong> | <?php wp_loginout(); ?>
-			<?php endif;?>
-    </div>
+		<div id="register" class="span5">
+			<div class="register">
+				<?php if ( !is_user_logged_in() ) : ?>
+					<?php wp_loginout(); ?> <?php wp_meta(); ?> | <?php wp_register( '', '', true ); ?>
+				<?php else : ?>
+					Welcome back <strong><?php global $current_user;
+						get_currentuserinfo();
+						echo( $current_user->user_login ); ?></strong> | <?php wp_loginout(); ?>
+				<?php endif; ?>
+			</div>
 		</div>
 	</header>
-<?php }
+<?php
+}
+
 add_action( 'cyberchimps_sitename_register', 'cyberchimps_logo_register_content' );
 
 // Full-Width Logo
 function cyberchimps_banner_content() {
 
 	// Getting banner options
-	$banner = cyberchimps_get_option( 'header_banner_image' );
+	$banner  = cyberchimps_get_option( 'header_banner_image' );
 	$default = get_template_directory_uri() . apply_filters( 'cyberchimps_banner_img', '/cyberchimps/lib/images/banner.jpg' );
-	$url = cyberchimps_get_option( 'header_banner_url' );
-?>	
+	$url     = cyberchimps_get_option( 'header_banner_url' );
+	?>
 	<header id="cc-header" class="row-fluid">
 		<div id="banner">
-			<?php if ($banner != ""):?>
+			<?php if ( $banner != "" ): ?>
 				<a href="<?php echo $url; ?>"><img src="<?php echo $banner; ?>" alt="logo"></a>
 			<?php endif; ?>
-			<?php if ($banner == ""):?>
+			<?php if ( $banner == "" ): ?>
 				<a href="<?php echo $url; ?>"><img src="<?php echo $default; ?>" alt="logo"></a>
 			<?php endif; ?>
-		</div>		
+		</div>
 	</header>
 <?php
 }
@@ -297,18 +317,20 @@ add_action( 'cyberchimps_banner', 'cyberchimps_banner_content' );
 //contact info
 function cyberchimps_contact_info() {
 	$contact = apply_filters( 'cyberchimps_header_contact', cyberchimps_get_option( 'contact_details' ) ); ?>
-  
-  <div class="contact_details">
+
+	<div class="contact_details">
 		<?php echo $contact; ?>
-  </div>
-<?php } 
+	</div>
+<?php
+}
 
 //description
 function cyberchimps_description() {
 	$description = get_bloginfo( 'description' );?>
-  <div class="blog-description">
-  	<p><?php echo $description; ?></p>
-  </div>
-<?php 
+	<div class="blog-description">
+		<p><?php echo $description; ?></p>
+	</div>
+<?php
 }
+
 ?>
